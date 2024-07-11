@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    label {
+        float: left;
+        width: 150px;
+    }
+
+    .custom {
+        display: none;
+    }
+
+    .custom.input[type=number] {
+        width: 20%;
+    }
+
+    .container-1 {
+        padding: 10px 30px;
+        background: white;
+        display: none;
+    }
+
+    .container-custom {
+        padding: 10px 30px;
+        background: white;
+        display: none;
+    }
+
+    .header-result {
+        padding: 10px 16px;
+        background: #088395;
+        color: #f1f1f1;
+        text-align: center;
+        top: 0;
+    }
+
+    .header-calculator {
+        padding: 10px 16px;
+        background: #088395;
+        color: #f1f1f1;
+        text-align: center;
+        top: 0;
+    }
+</style>
+
+<body>
+
+    <div class="sidebar">
+        <a class="active" href="project-1.html">Jom Kira</a>
+        <a href="project-1.html">Budget Calculator</a>
+    </div>
+    <br>
+
+    <div class="content">
+        <div class="header">Info</div>
+        <div class="container">
+            <p>
+                What is meant by the 50% 30% 20% rule of budgeting?
+                Budgeting basics: The 50-30-20 rule | UNFCU
+                The 50-30-20 rule recommends putting 50% of your money toward needs, 30% toward wants, and 20% toward
+                savings. The savings category also includes money you will need to realize your future goals.
+            </p>
+        </div>
+
+        <br>
+
+        <div class="header-calculator">Calculator</div>
+        <div class="container">
+            <form id="calculator">
+                <center>
+                    <input type="number" id="income" placeholder="Enter your Income" required>
+                    <button onclick="Calculate()">Calculate</button>
+                    <button class="btn-reset" onclick="Reset()">Reset</button>
+                    <br>
+                    <br>
+                    <center><b>OR</b></center>
+                    <p>
+                        Customize Your Budget Percentage: &nbsp;
+                        <input type="radio" name="customBudget" id="yes" value="yes" onclick="toggleCustom(true)"> Yes
+                        <input type="radio" name="customBudget" id="no" value="no" onclick="toggleCustom(false)" checked> No
+                    </p>
+                    <br>
+
+                    <div class="custom" id="custom">
+                        <label>Commitment:</label>
+                        <input type="number" id="Commitment" minlength="10" maxlength="100" placeholder="0"> %
+                        <br><br>
+                        <label>Entertainment:</label>
+                        <input type="number" id="Entertainment" minlength="10" maxlength="100" placeholder="0"> %
+                        <br><br>
+                        <label>Saving:</label>
+                        <input type="number" id="Saving" minlength="10" maxlength="100" placeholder="0"> %
+                    </div>
+                </center>
+            </form>
+        </div>
+
+        <br>
+
+        <div class="header-result">Result</div>
+        <div class="container-1" id="container-1">
+            <p>50%: RM <span id="fiftyPercent">0.00</span> (Commitment)</p>
+            <p>30%: RM <span id="thirtyPercent">0.00</span> (Entertainment)</p>
+            <p>20%: RM <span id="twentyPercent">0.00</span> (Saving)</p>
+        </div>
+
+        <div class="container-custom" id="container-custom">
+            <p><span id="Commitment">0</span>%: RM <span id="CommitmentPercent">0.00</span> (Commitment)</p>
+            <p><span id="Entertainment">0</span>%: RM <span id="EntertainmentPercent">0.00</span> (Entertainment)</p>
+            <p><span id="Saving">0</span>%: RM <span id="SavingPercent">0.00</span> (Saving)</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Ifwat Ismail. All rights reserved.</p>
+    </div>
+
+    <script>
+        function Calculate() {
+            var fifty = 0.50, thirty = 0.30, twenty = 0.20;
+
+            var income = parseFloat(document.getElementById("income").value);
+
+            if (!isNaN(income)) {
+
+                if (document.getElementById("yes").checked) {
+
+                    document.getElementById("container-custom").style.display = "block";
+                    document.getElementById("container-1").style.display = "none";
+
+                    var Commitment = parseFloat(document.getElementById("Commitment").value) / 100;
+                    var Entertainment = parseFloat(document.getElementById("Entertainment").value) / 100;
+                    var Saving = parseFloat(document.getElementById("Saving").value) / 100;
+
+                    var CommitmentPercent = income * Commitment;
+                    var EntertainmentPercent = income * Entertainment;
+                    var SavingPercent = income * Saving;
+
+                    document.getElementById("CommitmentPercent").innerText = CommitmentPercent.toFixed(2);
+                    document.getElementById("EntertainmentPercent").innerText = EntertainmentPercent.toFixed(2);
+                    document.getElementById("SavingPercent").innerText = SavingPercent.toFixed(2);
+                }
+
+                document.getElementById("container-1").style.display = "block";
+
+                var fiftyPercent = income * fifty;
+                var thirtyPercent = income * thirty;
+                var twentyPercent = income * twenty;
+
+                document.getElementById("fiftyPercent").innerText = fiftyPercent.toFixed(2);
+                document.getElementById("thirtyPercent").innerText = thirtyPercent.toFixed(2);
+                document.getElementById("twentyPercent").innerText = twentyPercent.toFixed(2);
+            }
+            else {
+                alert("Number Only!");
+            }
+        }
+
+        function Reset() {
+            document.getElementById("calculator").reset();
+            toggleCustom(false);
+            document.getElementById("container-custom").style.display = "none";
+            document.getElementById("container-1").style.display = "none";
+        }
+
+        function toggleCustom(show) {
+            var customDiv = document.getElementById("custom");
+            if (show) {
+                customDiv.style.display = "block";
+            } else {
+                customDiv.style.display = "none";
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

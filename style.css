@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #555;
+    background-image: url('img.jpg');
+}
+
+.header {
+    padding: 10px 16px;
+    background: #0C1844;
+    color: #f1f1f1;
+    text-align: center;
+    top: 0;
+}
+
+.container {
+    padding: 10px 30px;
+    background: white;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #C80036;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #0C1844;
+    color: white;
+    text-align: center;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #7776B3;
+    color: white;
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+input[type=number]{
+    border-style: none;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    background-color: #f1f1f1;
+}
+
+
+button {
+    padding: 10px;
+    border-style: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #7cb5e3;
+}
+
+.btn-reset {
+    padding: 10px;
+    border-style: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #C80036;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(48, 48, 48);
+    text-align: center;
+    color: white;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar a {
+        float: left;
+    }
+
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}
