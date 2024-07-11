@@ -16,10 +16,6 @@
         display: none;
     }
 
-    .custom.input[type=number] {
-        width: 20%;
-    }
-
     .container-1 {
         padding: 10px 30px;
         background: white;
@@ -75,8 +71,8 @@
             <form id="calculator">
                 <center>
                     <input type="number" id="income" placeholder="Enter your Income" required>
-                    <button onclick="Calculate()">Calculate</button>
-                    <button class="btn-reset" onclick="Reset()">Reset</button>
+                    <button type="button" onclick="Calculate()">Calculate</button>
+                    <button type="button" class="btn-reset" onclick="Reset()">Reset</button>
                     <br>
                     <br>
                     <center><b>OR</b></center>
@@ -89,13 +85,13 @@
 
                     <div class="custom" id="custom">
                         <label>Commitment:</label>
-                        <input type="number" id="Commitment" minlength="10" maxlength="100" placeholder="0"> %
+                        <input type="number" id="Commitment" min="0" max="100" placeholder="0"> %
                         <br><br>
                         <label>Entertainment:</label>
-                        <input type="number" id="Entertainment" minlength="10" maxlength="100" placeholder="0"> %
+                        <input type="number" id="Entertainment" min="0" max="100" placeholder="0"> %
                         <br><br>
                         <label>Saving:</label>
-                        <input type="number" id="Saving" minlength="10" maxlength="100" placeholder="0"> %
+                        <input type="number" id="Saving" min="0" max="100" placeholder="0"> %
                     </div>
                 </center>
             </form>
@@ -111,9 +107,9 @@
         </div>
 
         <div class="container-custom" id="container-custom">
-            <p><span id="Commitment">0</span>%: RM <span id="CommitmentPercent">0.00</span> (Commitment)</p>
-            <p><span id="Entertainment">0</span>%: RM <span id="EntertainmentPercent">0.00</span> (Entertainment)</p>
-            <p><span id="Saving">0</span>%: RM <span id="SavingPercent">0.00</span> (Saving)</p>
+            <p><span id="CommitmentPercentLabel">0</span>%: RM <span id="CommitmentPercent">0.00</span> (Commitment)</p>
+            <p><span id="EntertainmentPercentLabel">0</span>%: RM <span id="EntertainmentPercent">0.00</span> (Entertainment)</p>
+            <p><span id="SavingPercentLabel">0</span>%: RM <span id="SavingPercent">0.00</span> (Saving)</p>
         </div>
 
     </div>
@@ -146,19 +142,25 @@
                     document.getElementById("CommitmentPercent").innerText = CommitmentPercent.toFixed(2);
                     document.getElementById("EntertainmentPercent").innerText = EntertainmentPercent.toFixed(2);
                     document.getElementById("SavingPercent").innerText = SavingPercent.toFixed(2);
+
+                    document.getElementById("CommitmentPercentLabel").innerText = (Commitment * 100).toFixed(0);
+                    document.getElementById("EntertainmentPercentLabel").innerText = (Entertainment * 100).toFixed(0);
+                    document.getElementById("SavingPercentLabel").innerText = (Saving * 100).toFixed(0);
+
+                } else {
+                    document.getElementById("container-1").style.display = "block";
+                    document.getElementById("container-custom").style.display = "none";
+
+                    var fiftyPercent = income * fifty;
+                    var thirtyPercent = income * thirty;
+                    var twentyPercent = income * twenty;
+
+                    document.getElementById("fiftyPercent").innerText = fiftyPercent.toFixed(2);
+                    document.getElementById("thirtyPercent").innerText = thirtyPercent.toFixed(2);
+                    document.getElementById("twentyPercent").innerText = twentyPercent.toFixed(2);
                 }
 
-                document.getElementById("container-1").style.display = "block";
-
-                var fiftyPercent = income * fifty;
-                var thirtyPercent = income * thirty;
-                var twentyPercent = income * twenty;
-
-                document.getElementById("fiftyPercent").innerText = fiftyPercent.toFixed(2);
-                document.getElementById("thirtyPercent").innerText = thirtyPercent.toFixed(2);
-                document.getElementById("twentyPercent").innerText = twentyPercent.toFixed(2);
-            }
-            else {
+            } else {
                 alert("Number Only!");
             }
         }
@@ -178,7 +180,6 @@
                 customDiv.style.display = "none";
             }
         }
-
 
     </script>
 
